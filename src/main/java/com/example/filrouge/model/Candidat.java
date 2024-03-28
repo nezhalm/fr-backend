@@ -27,6 +27,8 @@ public class Candidat {
 	private String cvUrl; // Added CV attribute
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Offer offer;
+	@ManyToOne(fetch = FetchType.EAGER)
+	private User user;
 	public Candidat() {
 	}
 

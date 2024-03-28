@@ -2,6 +2,7 @@ package com.example.filrouge.service;
 
 import com.example.filrouge.model.Candidat;
 import com.example.filrouge.model.Offer;
+import com.example.filrouge.model.User;
 
 import java.util.List;
 import java.util.Set;
@@ -19,5 +20,6 @@ public interface candidateService {
     public Candidat findById(Integer id);
 
     public Set<Candidat> getCandidatsOfOffer(Offer offer);
+    public List<Candidat> getUsersByOfferId(Long offerId) ;
 
 }

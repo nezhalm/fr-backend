@@ -2,7 +2,9 @@ package com.example.filrouge.service.Imp;
 
 import com.example.filrouge.model.Candidat;
 import com.example.filrouge.model.Offer;
+import com.example.filrouge.model.User;
 import com.example.filrouge.repository.condidatRepository;
+import com.example.filrouge.repository.userRepository;
 import com.example.filrouge.service.candidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import java.util.Set;
 public class candidateImp implements candidateService {
     @Autowired
     private condidatRepository candidatRepository;
+    private userRepository uRepository;
 
     @Override
     public Candidat addCandidat(Candidat candidat) {
@@ -44,5 +47,10 @@ public class candidateImp implements candidateService {
     @Override
     public Set<Candidat> getCandidatsOfOffer(Offer offer) {
         return null;
+    }
+
+    @Override
+    public List<Candidat> getUsersByOfferId(Long offerId) {
+        return candidatRepository.findByOfferId(offerId);
     }
 }

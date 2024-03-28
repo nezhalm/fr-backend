@@ -1,8 +1,11 @@
 package com.example.filrouge.controller;
 import com.example.filrouge.model.Candidat;
 import com.example.filrouge.model.Response;
+import com.example.filrouge.model.User;
+import com.example.filrouge.service.authService;
 import com.example.filrouge.service.candidateService;
 import com.example.filrouge.service.companyService;
+import com.example.filrouge.service.userService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,19 +13,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/api/candidat")
 public class condidatController {
     private final ObjectMapper objectMapper = new ObjectMapper();
-
-    private final companyService cService;
     private final candidateService candidatService;
 
 
     @Autowired  ServletContext context;
-    public condidatController(companyService cService, candidateService candidatService) {
-        this.cService = cService;
+    public condidatController( companyService cService, candidateService candidatService) {
         this.candidatService = candidatService;
     }
 
@@ -60,4 +62,8 @@ public class condidatController {
         }
     }
 
+    @GetMapping("/by-offer/{offerId}")
+    public List<Candidat> getUsersByOfferId(@PathVariable Long offerId) {
+        return candidatService.getUsersByOfferId(offerId);
+    }
 }
