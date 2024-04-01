@@ -11,5 +11,7 @@ import java.util.List;
 public interface condidatRepository extends JpaRepository<Candidat, Integer> {
     Candidat findByEmail(String email);
     List<Candidat> findByOfferId(Long offerId);
+    List<Candidat> findByUserId(Long userId);
+
 
 }

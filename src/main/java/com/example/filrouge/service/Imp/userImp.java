@@ -40,36 +40,15 @@ public class userImp implements authService {
         authResponse.setToken(jwtToken);
         return authResponse;
     }
+    @Override
+    public AuthResponse register(RegisterRequest registerRequest) {
+        return null;
+    }
+
     private boolean isEmailUnique(String email) {
         // Vérifie si l'e-mail est unique dans la base de données
         return uRepository.countByEmail(email) == 1;
     }
-    @Override
-    public AuthResponse register(RegisterRequest registerRequest) {
-        // Vérifier si l'utilisateur existe déjà avec cet e-mail
-        if (uRepository.findUserByEmail(registerRequest.getEmail()).isPresent()) {
-            throw new UsernameNotFoundException("Username already exists");
-        }
 
-        // Créer un nouvel utilisateur à partir des détails de la demande
-        User user = modelMapper.map(registerRequest, User.class);
-        user.setRole(Role.CANDIDATE);
-        user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
-        user.setEmail(registerRequest.getEmail());
-
-        // Sauvegarder l'utilisateur dans la base de données et récupérer l'utilisateur sauvegardé
-        User savedUser = uRepository.save(user);
-
-        // Générer le token JWT pour l'utilisateur sauvegardé
-        UserAuthenticator userAuthenticator = new UserAuthenticator(savedUser);
-        String jwtToken = jwtService.generateToken(userAuthenticator);
-
-        // Créer une réponse d'authentification avec l'utilisateur sauvegardé et le token JWT
-        AuthResponse authResponse = new AuthResponse();
-        authResponse.setUser(savedUser); // Utiliser l'utilisateur sauvegardé ici
-        authResponse.setToken(jwtToken);
-
-        return authResponse;
-    }
 
 }

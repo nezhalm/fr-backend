@@ -26,6 +26,13 @@ public class Offer {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Category category;
+
+
+	@OneToMany(mappedBy = "recruitmentOffer")
+	private Set<RecruitmentMessage> recruiterMessages;
+
+	@OneToMany(mappedBy = "recruitmentOffer")
+	private Set<CandidateMessage> candidateMessages;
 	
 	@OneToMany(mappedBy="offer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnore

@@ -52,9 +52,10 @@ public class condidatController {
     public void deleteCandidat(@PathVariable("CandidatId") Integer id) {
         this.candidatService.deleteCandidat(id);
     }
-    @GetMapping("/email/{email}")
-    public ResponseEntity<Candidat> getCandidatByEmail(@PathVariable("email") String email) {
-        Candidat candidat = candidatService.findByEmail(email);
+
+    @GetMapping("/candidats/user/{userId}")
+    public ResponseEntity<List<Candidat>> getCandidatByUserId(@PathVariable("userId") Long userId) {
+       List<Candidat>  candidat = candidatService.findByUserId(userId);
         if (candidat != null) {
             return ResponseEntity.ok(candidat);
         } else {

@@ -17,14 +17,15 @@ import java.util.Set;
 public class candidateImp implements candidateService {
     @Autowired
     private condidatRepository candidatRepository;
-    private userRepository uRepository;
 
     @Override
     public Candidat addCandidat(Candidat candidat) {
 
         return this.candidatRepository.save(candidat);
     }
-
+    public List<Candidat> findByUserId(Long userId) {
+        return candidatRepository.findByUserId(userId);
+    }
     @Override
     public List<Candidat> getCandidats() {
 

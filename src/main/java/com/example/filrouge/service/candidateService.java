@@ -18,7 +18,7 @@ public interface candidateService {
     public void deleteCandidat(Integer id);
 
     public Candidat findById(Integer id);
-
+    public  List<Candidat>  findByUserId(Long userId) ;
     public Set<Candidat> getCandidatsOfOffer(Offer offer);
     public List<Candidat> getUsersByOfferId(Long offerId) ;
 

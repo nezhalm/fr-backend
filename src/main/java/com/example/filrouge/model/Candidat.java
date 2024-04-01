@@ -33,7 +33,7 @@ public class Candidat {
 	}
 
 	public Candidat(String fullname, String email, String phone, String letter, String filename, Offer offer, Date date) {
-		
+
 		this.fullname = fullname;
 		this.email = email;
 		this.phone = phone;
@@ -106,6 +106,6 @@ public class Candidat {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
-	
+
+
 }
